@@ -1,3 +1,4 @@
+from typing import Any, Dict
 from django import forms
 TEXT_FIELD = 'text'
 SELECT_FIELD = 'select'
@@ -23,5 +24,12 @@ class ProfileForm(forms.Form):
             form_field.id = field['id']
             form_field.type = field['type']
             self.fields[field['id']] = form_field
+    def clean(self):
+        cleaned_data = super().clean()
+        firstname = cleaned_data.get("first_name")
+        if "6" in firstname:
+            print(firstname)
+            raise forms.ValidationError("you can't go below 100", code="fisrt_name",)
+        return cleaned_data
 
 

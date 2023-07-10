@@ -2,15 +2,21 @@
 {% block content %}
 <div class="container md-6">
 <h1 class="h3 mb-3 fw-normal">Your Account</h1>
-<form>
+<form method="POST">
 
     {% csrf_token%}
 
     <div class="form-group">
         {{ form.as_p }}
-        <button class="w-20 btn btn-lg btn-primary disabled" type="submit">Update Profile (Intentionally not working)</button>
+        <button class="w-20 btn btn-lg btn-primary " type="submit">Update Profile (Intentionally not working)</button>
     </div>
-
+    
+        {% if error %}
+        <div class="alert alert-primary d-inline-block">
+        {{ error }}
+        </div>
+        {% endif %}
+   
 
 </form>
 </div>
